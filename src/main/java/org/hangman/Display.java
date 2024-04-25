@@ -27,6 +27,21 @@ public class Display {
     }
 
     public void printWelcomeMessage() {
-        System.out.println("Welcome to " + getName());
+        System.out.println("Welcome to " + getName() + "." + "\n" + "Choose a letter and guess the word before your lives run out.");
+    }
+
+    public void printLivesRemaining() {
+        System.out.println("You have " + getLivesRemaining() + " lives remaining.");
+    }
+
+    public void showUnguessedLetters(String word) {
+
+        String underscoresToPrint = "";
+
+        for (int i = 0; i < word.length(); i++) {
+            underscoresToPrint += "_ ";
+        }
+
+        System.out.println(underscoresToPrint);
     }
 }

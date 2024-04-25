@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="054dbbc9-1ef0-4ec4-be0f-30ed139c7084" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +54,11 @@
     "Application.Game.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "preferences.sourceCode"
+    "last_opened_file_path": "/Users/cheryllee/nology/java/hangman",
+    "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
   <component name="RunManager">

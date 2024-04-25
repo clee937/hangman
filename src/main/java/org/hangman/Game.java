@@ -2,6 +2,7 @@ package org.hangman;
 
 public class Game {
 
+    private boolean gameInPlay = true;
     private int livesRemaining = 7;
 
     public Game(int lives) {
@@ -18,5 +19,8 @@ public class Game {
 
     public void startGame(Display display) {
         display.printWelcomeMessage();
+        display.printLivesRemaining();
+
     }
 }
+
