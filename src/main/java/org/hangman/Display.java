@@ -1,37 +1,13 @@
 package org.hangman;
 
 public class Display {
-
-    private String name;
-    private int livesRemaining;
-
-    public Display(String name, int lives) {
-        this.name = name;
-        this.livesRemaining = lives;
+    
+    public void printWelcomeMessage(String name) {
+        System.out.println("Welcome to " + name + "." + "\n" + "Choose a letter and guess the word before your lives run out.");
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getLivesRemaining() {
-        return livesRemaining;
-    }
-
-    public void setLivesRemaining(int livesRemaining) {
-        this.livesRemaining = livesRemaining;
-    }
-
-    public void printWelcomeMessage() {
-        System.out.println("Welcome to " + getName() + "." + "\n" + "Choose a letter and guess the word before your lives run out.");
-    }
-
-    public void printLivesRemaining() {
-        System.out.println("You have " + getLivesRemaining() + " lives remaining.");
+    public void printLivesRemaining(int lives) {
+        System.out.println("You have " + lives + " lives remaining.");
     }
 
     public void showUnguessedLetters(String word) {
