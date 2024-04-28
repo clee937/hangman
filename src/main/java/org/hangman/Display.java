@@ -23,6 +23,24 @@ public class Display {
         System.out.println(underscoresToPrint + "\n");
     }
 
+    //overloading
+    public void printUnguessedLetters(String word, char letter, List<Character> correctLettersArray) {
+
+        String hiddenWord = "";
+
+        for (int i = 0; i < word.length(); i++) {
+
+            if (word.toCharArray()[i] == letter) {
+                hiddenWord += letter + " ";
+            } else if (correctLettersArray.contains(word.toCharArray()[i])) {
+                hiddenWord += word.toCharArray()[i] + " ";
+            } else {
+                hiddenWord += "_ ";
+            }
+        }
+        System.out.println(hiddenWord + "\n");
+    }
+
     public void printGuessedLetters(List<Character> guessedLetters) {
 
         System.out.println("Guesses so far: " + guessedLetters);

@@ -11,8 +11,9 @@ public class Game {
     private String randomWord = "";
     private char currentGuess;
     private boolean correctGuess;
-    private char[] incorrectLetters = new char[7];
-    ArrayList<Character> guessedLetters = new ArrayList<>();
+    //    private char[] correctGuesses = new char[7];
+    ArrayList<Character> correctLetters = new ArrayList<>();
+    ArrayList<Character> incorrectLetters = new ArrayList<>();
 
     private final char[] alphabet = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
@@ -33,20 +34,20 @@ public class Game {
         this.currentGuess = Character.toLowerCase(currentGuess);
     }
 
-    public List<Character> getGuessedLetters() {
-        return this.guessedLetters;
+    public List<Character> getIncorrectLetters() {
+        return this.incorrectLetters;
     }
 
-    public void setGuessedLetters(char guessedLetter) {
-        this.guessedLetters.add(guessedLetter);
+    public void setIncorrectLetters(char guessedLetter) {
+        this.incorrectLetters.add(guessedLetter);
     }
 
-    public char[] getIncorrectLetters() {
-        return incorrectLetters;
+    public List<Character> getCorrectLetters() {
+        return correctLetters;
     }
 
-    public void setIncorrectLetters(char[] incorrectLetters) {
-        this.incorrectLetters = incorrectLetters;
+    public void setCorrectLetters(char guessedLetter) {
+        this.correctLetters.add(guessedLetter);
     }
 
 //    public Game(String name, int lives) {
@@ -93,12 +94,18 @@ public class Game {
             if (!foundGuessedLetter) {
                 setLivesRemaining(getLivesRemaining() - 1);
                 display.printLivesRemaining(getLivesRemaining());
-                setGuessedLetters(currentGuess);
-            }
-
-
-//            print unguessed letters
+                setIncorrectLetters(currentGuess);
+                //add to incorrect guesses array;
+//                display.printUnguessedLetters(randomWord, currentGuess);
+//                print guess feedback (neg)
+            } else {
+                //   print guess feedback (pos);
+                setCorrectLetters(currentGuess);
+                display.printUnguessedLetters(randomWord, currentGuess, this.getCorrectLetters());
+//            reprint unguessed letters
 //            display.printGuessedLetters(getGuessedLetters());
+//            return;
+            }
 
         } else {
             display.printDuplicateGuessMessage(getCurrentGuess());
@@ -137,7 +144,7 @@ public class Game {
     }
 
     public boolean checkIfLetterAlreadyGuessed(Character guessedLetter) {
-        return this.getGuessedLetters().contains(guessedLetter);
+        return this.getIncorrectLetters().contains(guessedLetter) || this.getCorrectLetters().contains(guessedLetter);
     }
 
     public boolean checkWordContainsGuessedLetter(char guessedLetter) {
