@@ -2,15 +2,15 @@ package org.hangman;
 
 public class Main {
     public static void main(String[] args) {
+        GameManager.run();
 
-        Game game = new Game();
-        Display display = new Display();
-        WordLibrary wordLibrary = new WordLibrary();
-
-        game.startGame(display);
-        String randomWord = wordLibrary.getRandomWord().toUpperCase();
-
-        display.showUnguessedLetters(randomWord);
+        //Structure
+        // constants
+        // variables
+        // constructors
+        // getters and setters
+        // methods
+        // toString
 
     }
 }

@@ -1,7 +1,9 @@
 package org.hangman;
 
+import java.util.List;
+
 public class Display {
-    
+
     public void printWelcomeMessage(String name) {
         System.out.println("Welcome to " + name + "." + "\n" + "Choose a letter and guess the word before your lives run out.");
     }
@@ -10,7 +12,7 @@ public class Display {
         System.out.println("You have " + lives + " lives remaining.");
     }
 
-    public void showUnguessedLetters(String word) {
+    public void printUnguessedLetters(String word) {
 
         String underscoresToPrint = "";
 
@@ -18,6 +20,23 @@ public class Display {
             underscoresToPrint += "_ ";
         }
 
-        System.out.println(underscoresToPrint);
+        System.out.println(underscoresToPrint + "\n");
+    }
+
+    public void printGuessedLetters(List<Character> guessedLetters) {
+
+        System.out.println("Guesses so far: " + guessedLetters);
+    }
+
+    public void printSelectLetterPrompt() {
+        System.out.println("Please select a letter:");
+    }
+
+    public void printPlayersGuess(Character letter) {
+        System.out.println("You guessed: " + Character.toLowerCase(letter));
+    }
+
+    public void printDuplicateGuessMessage(char letter) {
+        System.out.println(letter + " has already been guessed. Please guess again" + Character.toLowerCase(letter));
     }
 }
