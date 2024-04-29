@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Display {
 
-    public void printWelcomeMessage(String name) {
-        System.out.println("Welcome to " + name + "." + "\n" + "Choose a letter and guess the word before your lives run out.");
-        System.out.println("You have 7 lives. Good luck.");
+    public void printWelcomeMessage() {
+        System.out.printf("%nWelcome to Hangman.%nChoose a letter and guess the word before your lives run out.%nYou have 7 lives. Good luck.%n%n");
+//        System.out.println("You have 7 lives. Good luck.");
     }
 
     public void printLivesRemaining(int lives) {
