@@ -7,19 +7,22 @@ public class Game {
 
     private String name = "Hangman";
     private int livesRemaining = 7;
+    private Display display;
     private boolean gameInPlay = true;
     private String randomWord = "";
+    private String hiddenWordInPlay = "";
     private char currentGuess;
     private boolean correctGuess;
     //    private char[] correctGuesses = new char[7];
-    ArrayList<Character> correctLetters = new ArrayList<>();
+    ArrayList<Character> guessedLetters = new ArrayList<>();
     ArrayList<Character> incorrectLetters = new ArrayList<>();
 
     private final char[] alphabet = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-    public Game() {
+    public Game(Display display) {
         this.name = this.getName();
         this.livesRemaining = this.getLivesRemaining();
+
     }
 
     public char[] getAlphabet() {
@@ -42,12 +45,12 @@ public class Game {
         this.incorrectLetters.add(guessedLetter);
     }
 
-    public List<Character> getCorrectLetters() {
-        return correctLetters;
+    public List<Character> getGuessedLetters() {
+        return guessedLetters;
     }
 
-    public void setCorrectLetters(char guessedLetter) {
-        this.correctLetters.add(guessedLetter);
+    public void setGuessedLetters(char guessedLetter) {
+        this.guessedLetters.add(guessedLetter);
     }
 
 //    public Game(String name, int lives) {
@@ -79,45 +82,20 @@ public class Game {
         this.livesRemaining = livesRemaining;
     }
 
-    public void playGame(Display display, WordLibrary wordLibrary, CommandPrompter commandPrompter) {
-        display.printWelcomeMessage(this.getName());
-        display.printLivesRemaining(this.getLivesRemaining());
-        this.setRandomWord(wordLibrary.getRandomWord().toLowerCase());
-        display.printUnguessedLetters(this.randomWord);
-
-        this.setCurrentGuess(commandPrompter.getUsersGuess(this));
-        boolean invalidGuess = checkIfLetterAlreadyGuessed(currentGuess);
-
-        if (!invalidGuess) {
-            boolean foundGuessedLetter = checkWordContainsGuessedLetter(getCurrentGuess());
-            System.out.println("Found guessed letter: " + foundGuessedLetter);
-            if (!foundGuessedLetter) {
-                setLivesRemaining(getLivesRemaining() - 1);
-                display.printLivesRemaining(getLivesRemaining());
-                setIncorrectLetters(currentGuess);
-                //add to incorrect guesses array;
-//                display.printUnguessedLetters(randomWord, currentGuess);
-//                print guess feedback (neg)
-            } else {
-                //   print guess feedback (pos);
-                setCorrectLetters(currentGuess);
-                display.printUnguessedLetters(randomWord, currentGuess, this.getCorrectLetters());
-//            reprint unguessed letters
-//            display.printGuessedLetters(getGuessedLetters());
-//            return;
-            }
-
-        } else {
-            display.printDuplicateGuessMessage(getCurrentGuess());
-        }
-    }
-
     public String getRandomWord() {
         return this.randomWord;
     }
 
     public void setRandomWord(String randomWord) {
         this.randomWord = randomWord;
+    }
+
+    public String getHiddenWordInPlay() {
+        return hiddenWordInPlay;
+    }
+
+    public void setHiddenWordInPlay(String hiddenWord) {
+        this.hiddenWordInPlay = hiddenWord;
     }
 
     public boolean getCorrectGuess() {
@@ -128,10 +106,61 @@ public class Game {
         this.correctGuess = correctGuess;
     }
 
+    public void playGame(Display display, WordLibrary wordLibrary, CommandPrompter commandPrompter) {
+        display.printWelcomeMessage(this.getName());
+//        display.printLivesRemaining(this.getLivesRemaining());
+        this.setRandomWord(wordLibrary.getRandomWord().toLowerCase());
+        setHiddenWordInPlay(display.printHiddenWord(this.getRandomWord()));
+
+
+        while (livesRemaining > 0 && hiddenWordInPlay.contains("_")) {
+            handleGuessLogic(display, commandPrompter);
+        }
+
+        checkGameState(display);
+    }
+
+    public void handleGuessLogic(Display display, CommandPrompter commandPrompter) {
+        this.setCurrentGuess(commandPrompter.getUsersGuess(this));
+
+
+        boolean invalidGuess = checkIfLetterAlreadyGuessed(currentGuess);
+
+
+        if (!invalidGuess) {
+            boolean foundGuessedLetter = checkWordContainsGuessedLetter(getCurrentGuess());
+//            System.out.println("Found guessed letter: " + foundGuessedLetter);
+            if (!foundGuessedLetter) {
+                display.printIncorrectGuessFeedback();
+                setLivesRemaining(getLivesRemaining() - 1);
+                display.printLivesRemaining(getLivesRemaining());
+                setIncorrectLetters(currentGuess);
+                this.setGuessedLetters(this.currentGuess);
+                display.printGuessedLetters(getGuessedLetters());
+//                display.printHiddenWord(randomWord, currentGuess, this.getGuessedLetters());
+                this.setHiddenWordInPlay(display.printHiddenWord(randomWord, currentGuess, this.getGuessedLetters()));
+            } else {
+                setGuessedLetters(currentGuess);
+                display.printCorrectGuessFeedback();
+
+//
+//                display.printHiddenWord(randomWord, currentGuess, this.getGuessedLetters());
+                display.printGuessedLetters(getGuessedLetters());
+                display.printLivesRemaining(getLivesRemaining());
+                this.setHiddenWordInPlay(display.printHiddenWord(randomWord, currentGuess, this.getGuessedLetters()));
+            }
+            return;
+
+        } else {
+            display.printDuplicateGuessMessage(getCurrentGuess());
+        }
+    }
+
+
     public boolean checkIfGuessIsALetter(char guessedLetter) {
 
         boolean isLetter = false;
-        System.out.println("checking guess....");
+//        System.out.println("checking guess....");
 
         for (char letter : this.getAlphabet()) {
 
@@ -144,13 +173,20 @@ public class Game {
     }
 
     public boolean checkIfLetterAlreadyGuessed(Character guessedLetter) {
-        return this.getIncorrectLetters().contains(guessedLetter) || this.getCorrectLetters().contains(guessedLetter);
+        return this.getIncorrectLetters().contains(guessedLetter) || this.getGuessedLetters().contains(guessedLetter);
     }
 
     public boolean checkWordContainsGuessedLetter(char guessedLetter) {
         return getRandomWord().contains(Character.toString(guessedLetter));
     }
 
-
+    public void checkGameState(Display display) {
+        if (!hiddenWordInPlay.contains("_")) {
+            display.printWinMessage();
+        } else if (getLivesRemaining() == 0) {
+            display.printGameOverMessage();
+        }
+    }
 }
+
 

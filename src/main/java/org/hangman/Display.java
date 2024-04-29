@@ -6,25 +6,27 @@ public class Display {
 
     public void printWelcomeMessage(String name) {
         System.out.println("Welcome to " + name + "." + "\n" + "Choose a letter and guess the word before your lives run out.");
+        System.out.println("You have 7 lives. Good luck.");
     }
 
     public void printLivesRemaining(int lives) {
-        System.out.println("You have " + lives + " lives remaining.");
+        System.out.println("You have " + lives + " lives remaining");
     }
 
-    public void printUnguessedLetters(String word) {
+    public String printHiddenWord(String word) {
 
-        String underscoresToPrint = "";
+        String hiddenWord = "";
 
         for (int i = 0; i < word.length(); i++) {
-            underscoresToPrint += "_ ";
+            hiddenWord += "_ ";
         }
 
-        System.out.println(underscoresToPrint + "\n");
+        System.out.println(hiddenWord + "\n");
+        return hiddenWord;
     }
 
     //overloading
-    public void printUnguessedLetters(String word, char letter, List<Character> correctLettersArray) {
+    public String printHiddenWord(String word, char letter, List<Character> correctLettersArray) {
 
         String hiddenWord = "";
 
@@ -39,11 +41,12 @@ public class Display {
             }
         }
         System.out.println(hiddenWord + "\n");
+        return hiddenWord;
     }
 
     public void printGuessedLetters(List<Character> guessedLetters) {
 
-        System.out.println("Guesses so far: " + guessedLetters);
+        System.out.println("Guesses so far: " + guessedLetters + "\n");
     }
 
     public void printSelectLetterPrompt() {
@@ -55,6 +58,27 @@ public class Display {
     }
 
     public void printDuplicateGuessMessage(char letter) {
-        System.out.println(letter + " has already been guessed. Please guess again" + Character.toLowerCase(letter));
+        System.out.println(letter + " has already been guessed. Please guess again.");
     }
+
+    public void printHiddenWordInPlay(String hiddenWordInPlay) {
+        System.out.println(hiddenWordInPlay);
+    }
+
+    public void printIncorrectGuessFeedback() {
+        System.out.println("That's an incorrect guess.");
+    }
+
+    public void printCorrectGuessFeedback() {
+        System.out.println("Correct!");
+    }
+
+    public void printWinMessage() {
+        System.out.println("You win! Well done!");
+    }
+
+    public void printGameOverMessage() {
+        System.out.println("You've run out of lives. Game over.");
+    }
+
 }

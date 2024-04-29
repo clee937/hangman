@@ -2,7 +2,7 @@ package org.hangman;
 
 public class WordLibrary {
 
-    private String[] words = {"elephant", "wizard", "supercalifragilisticexpialidocious"};
+    private String[] words = {"elephant", "wizard", "super"};
 
     //    private ArrayList<String> words = new ArrayList<>();
 

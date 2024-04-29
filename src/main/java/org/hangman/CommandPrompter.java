@@ -24,6 +24,12 @@ public class CommandPrompter {
         System.out.println("You guessed: " + guessedLetter);
         return guessedLetter.charAt(0);
     }
+
+    public void askUserToPlayAgain() {
+        System.out.println("Would you like to play again?");
+        String answer = scanner.nextLine().toLowerCase();
+        //
+    }
 }
 
 
