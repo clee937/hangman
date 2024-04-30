@@ -79,6 +79,7 @@ public class Game {
 
             display.printGuessedLetters(guessedLetters);
             display.printLivesRemaining(livesRemaining);
+            display.printAsciiFeedback(livesRemaining);
             hiddenWordInPlay = display.printHiddenWord(randomWord, currentGuess, guessedLetters);
 
         } else {
@@ -113,7 +114,7 @@ public class Game {
         if (!hiddenWordInPlay.contains("_")) {
             display.printWinMessage(livesRemaining);
         } else if (livesRemaining == 0) {
-            display.printGameOverMessage();
+            display.printGameOverMessage(randomWord);
         }
     }
 

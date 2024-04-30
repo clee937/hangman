@@ -5,12 +5,113 @@ import java.util.List;
 public class Display {
 
     public void printWelcomeMessage() {
-        System.out.printf("%nWelcome to Hangman.%nChoose a letter and guess the word before your lives run out.%nYou have 7 lives. Good luck.%n%n");
+        System.out.printf("%nLet's play Hangman.%nChoose a letter and guess the word before your lives run out.%nYou have 7 lives. Good luck.%n%n");
     }
 
     public void printLivesRemaining(int lives) {
-        System.out.printf("You have %d lives remaining.%n%n", lives);
+        if (lives == 1) {
+            System.out.printf("You have %d life remaining.%n%n", lives);
+        } else {
+            System.out.printf("You have %d lives remaining.%n%n", lives);
+        }
     }
+
+    public void printAsciiFeedback(int lives) {
+
+        switch (lives) {
+            case 7:
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 6:
+                System.out.println("   _____");
+                System.out.println("   |/  ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 5:
+                System.out.println("   ___________");
+                System.out.println("   |/        |");
+                System.out.println("   |         |");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 4:
+                System.out.println("   ___________");
+                System.out.println("   |/        |");
+                System.out.println("   |         |");
+                System.out.println("   |         O");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 3:
+                System.out.println("   ___________");
+                System.out.println("   |/        |");
+                System.out.println("   |         |");
+                System.out.println("   |         O");
+                System.out.println("   |         |/");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 2:
+                System.out.println("   ___________");
+                System.out.println("   |/        |");
+                System.out.println("   |         |");
+                System.out.println("   |         O");
+                System.out.println("   |        \\|/");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 1:
+                System.out.println("   ___________");
+                System.out.println("   |/        |");
+                System.out.println("   |         |");
+                System.out.println("   |         O");
+                System.out.println("   |        \\|/");
+                System.out.println("   |         |");
+                System.out.println("   |        /");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+            case 0:
+                System.out.println("   ___________");
+                System.out.println("   |/        |");
+                System.out.println("   |         |");
+                System.out.println("   |         O");
+                System.out.println("   |        /|\\");
+                System.out.println("   |         |");
+                System.out.println("   |        | |");
+                System.out.println("   |   ");
+                System.out.println("=======");
+                System.out.println("");
+                break;
+        }
+    }
+
 
     public String printHiddenWord(String word) {
 
@@ -57,7 +158,7 @@ public class Display {
     }
 
     public void printDuplicateGuessMessage(char letter) {
-        System.out.printf("%s has already been guessed.%n", letter);
+        System.out.printf("\"%s\" has already been guessed.%n", letter);
     }
 
     public void printHiddenWordInPlay(String hiddenWordInPlay) {
@@ -80,12 +181,13 @@ public class Display {
         }
     }
 
-    public void printGameOverMessage() {
+    public void printGameOverMessage(String word) {
         System.out.println("You've run out of lives. Game over.");
+        System.out.println("The word was " + word);
     }
 
     public void printEndGameMessage() {
-        System.out.println("Thanks for playing :D Enjoy the rest of your day.");
+        System.out.println("Thanks for playing. Goodbye.");
     }
 
 
