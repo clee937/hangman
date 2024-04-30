@@ -6,11 +6,10 @@ public class Display {
 
     public void printWelcomeMessage() {
         System.out.printf("%nWelcome to Hangman.%nChoose a letter and guess the word before your lives run out.%nYou have 7 lives. Good luck.%n%n");
-//        System.out.println("You have 7 lives. Good luck.");
     }
 
     public void printLivesRemaining(int lives) {
-        System.out.println("You have " + lives + " lives remaining");
+        System.out.printf("You have %d lives remaining.%n%n", lives);
     }
 
     public String printHiddenWord(String word) {
@@ -54,11 +53,11 @@ public class Display {
     }
 
     public void printPlayersGuess(Character letter) {
-        System.out.println("You guessed: " + Character.toLowerCase(letter));
+        System.out.printf("You guessed: %s", Character.toLowerCase(letter));
     }
 
     public void printDuplicateGuessMessage(char letter) {
-        System.out.println(letter + " has already been guessed. Please guess again.");
+        System.out.printf("%s has already been guessed.%n", letter);
     }
 
     public void printHiddenWordInPlay(String hiddenWordInPlay) {
@@ -73,12 +72,21 @@ public class Display {
         System.out.println("Correct!");
     }
 
-    public void printWinMessage() {
-        System.out.println("You win! Well done!");
+    public void printWinMessage(int livesRemaining) {
+        if (livesRemaining == 7) {
+            System.out.printf("You win, with all %d lives remaining! Well done!", livesRemaining);
+        } else {
+            System.out.printf("You win, with %d lives remaining! Well done!", livesRemaining);
+        }
     }
 
     public void printGameOverMessage() {
         System.out.println("You've run out of lives. Game over.");
     }
+
+    public void printEndGameMessage() {
+        System.out.println("Thanks for playing :D Enjoy the rest of your day.");
+    }
+
 
 }

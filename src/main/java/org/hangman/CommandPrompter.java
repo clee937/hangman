@@ -9,7 +9,11 @@ public class CommandPrompter {
 
         System.out.println("Please guess a letter: ");
 
-        String guessedLetter = scanner.nextLine().toLowerCase();
+        String guessedLetter = scanner.nextLine().toUpperCase();
+
+        while (guessedLetter.isEmpty()) {
+            guessedLetter = scanner.nextLine().toUpperCase();
+        }
 
         boolean IsGuessALetter = game.checkIfGuessIsALetter(guessedLetter.charAt(0));
 
@@ -25,12 +29,18 @@ public class CommandPrompter {
         return guessedLetter.charAt(0);
     }
 
-    public void askUserToPlayAgain() {
-        System.out.println("Would you like to play again?");
-        String answer = scanner.nextLine().toLowerCase();
-        //
+    public boolean askToPlayAgain() {
+        System.out.println("\n" + "Play again? Y/N");
+        String answer = scanner.nextLine().toUpperCase();
+
+        while (answer.isEmpty()) {
+            answer = scanner.nextLine().toUpperCase();
+        }
+
+        while (!answer.equals("Y") && !answer.equals("N")) {
+            answer = scanner.nextLine().toUpperCase();
+        }
+
+        return answer.equals("Y");
     }
 }
-
-
-

@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private final char[] alphabet = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private final char[] alphabet = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     private int livesRemaining = 7;
     private String randomWord = "";
     private String hiddenWordInPlay = "";
-    private char currentGuess;
     private ArrayList<Character> guessedLetters = new ArrayList<>();
 
     public List<Character> getGuessedLetters() {
@@ -45,43 +44,48 @@ public class Game {
 
     public void playGame(Display display, WordLibrary wordLibrary, CommandPrompter commandPrompter) {
         display.printWelcomeMessage();
-        randomWord = wordLibrary.getRandomWord().toLowerCase();
+        randomWord = wordLibrary.getRandomWord().toUpperCase();
         hiddenWordInPlay = display.printHiddenWord(randomWord);
 
         while (livesRemaining > 0 && hiddenWordInPlay.contains("_")) {
             handleGuessLogic(display, commandPrompter);
         }
         checkGameState(display);
+        boolean playAgain = commandPrompter.askToPlayAgain();
+
+        if (playAgain) {
+            resetGame();
+            playGame(display, wordLibrary, commandPrompter);
+        } else {
+            display.printEndGameMessage();
+        }
     }
 
     public void handleGuessLogic(Display display, CommandPrompter commandPrompter) {
 
-        currentGuess = commandPrompter.getUsersGuess(this);
+        char currentGuess = commandPrompter.getUsersGuess(this);
         boolean invalidGuess = checkIfLetterAlreadyGuessed(currentGuess);
 
         if (!invalidGuess) {
+            guessedLetters.add(currentGuess);
             boolean foundGuessedLetter = checkWordContainsGuessedLetter(currentGuess);
 
             if (foundGuessedLetter) {
-                guessedLetters.add(currentGuess);
                 display.printCorrectGuessFeedback();
-                display.printGuessedLetters(getGuessedLetters());
-                display.printLivesRemaining(getLivesRemaining());
-
             } else {
                 display.printIncorrectGuessFeedback();
                 livesRemaining -= 1;
-                display.printLivesRemaining(livesRemaining);
-                guessedLetters.add(currentGuess);
-                display.printGuessedLetters(guessedLetters);
             }
+
+            display.printGuessedLetters(guessedLetters);
+            display.printLivesRemaining(livesRemaining);
             hiddenWordInPlay = display.printHiddenWord(randomWord, currentGuess, guessedLetters);
-            return;
 
         } else {
             display.printDuplicateGuessMessage(currentGuess);
         }
     }
+
 
     public boolean checkIfGuessIsALetter(char guessedLetter) {
 
@@ -102,15 +106,23 @@ public class Game {
     }
 
     public boolean checkWordContainsGuessedLetter(char guessedLetter) {
-        return getRandomWord().contains(Character.toString(guessedLetter));
+        return randomWord.contains(Character.toString(guessedLetter));
     }
 
     public void checkGameState(Display display) {
         if (!hiddenWordInPlay.contains("_")) {
-            display.printWinMessage();
-        } else if (getLivesRemaining() == 0) {
+            display.printWinMessage(livesRemaining);
+        } else if (livesRemaining == 0) {
             display.printGameOverMessage();
         }
+    }
+
+    public void resetGame() {
+        livesRemaining = 7;
+        randomWord = "";
+        hiddenWordInPlay = "";
+        guessedLetters = new ArrayList<>();
+
     }
 }
 
