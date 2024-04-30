@@ -9,7 +9,7 @@ public class CommandPrompter {
 
         System.out.println("Please guess a letter: ");
 
-        String guessedLetter = scanner.nextLine().toUpperCase();
+        String guessedLetter = scanner.nextLine().trim().toUpperCase();
 
         while (guessedLetter.isEmpty()) {
             guessedLetter = scanner.nextLine().toUpperCase();
@@ -31,7 +31,7 @@ public class CommandPrompter {
 
     public boolean askToPlayAgain() {
         System.out.println("\n" + "Play again? Y/N");
-        String answer = scanner.nextLine().toUpperCase();
+        String answer = scanner.nextLine().trim().toUpperCase();
 
         while (answer.isEmpty()) {
             answer = scanner.nextLine().toUpperCase();

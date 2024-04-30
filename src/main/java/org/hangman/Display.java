@@ -5,6 +5,17 @@ import java.util.List;
 public class Display {
 
     public void printWelcomeMessage() {
+
+        System.out.println(" _                                             \n" +
+                "| |                                            \n" +
+                "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n" +
+                "| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n" +
+                "| | | | (_| | | | | (_| | | | | | | (_| | | | |\n" +
+                "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n" +
+                "                    __/ |                      \n" +
+                "                   |___/");
+
+
         System.out.printf("%nLet's play Hangman.%nChoose a letter and guess the word before your lives run out.%nYou have 7 lives. Good luck.%n%n");
     }
 
@@ -183,7 +194,7 @@ public class Display {
 
     public void printGameOverMessage(String word) {
         System.out.println("You've run out of lives. Game over.");
-        System.out.println("The word was " + word);
+        System.out.printf("%nThe word was \"%s\"", word);
     }
 
     public void printEndGameMessage() {

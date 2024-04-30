@@ -4,8 +4,6 @@ public class WordLibrary {
 
     private String[] words = {"elephant", "wizard", "super"};
 
-    //    private ArrayList<String> words = new ArrayList<>();
-
     public String[] getWords() {
         return words;
     }

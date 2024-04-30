@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private final char[] alphabet = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    private final char[] validGameLetters = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     private int livesRemaining = 7;
     private String randomWord = "";
     private String hiddenWordInPlay = "";
     private ArrayList<Character> guessedLetters = new ArrayList<>();
+    private Display display;
+    private CommandPrompter commandPrompter;
+    private WordLibrary wordLibrary;
+
+    public Game(Display display, WordLibrary wordLibrary, CommandPrompter commandPrompter) {
+        this.display = display;
+        this.wordLibrary = wordLibrary;
+        this.commandPrompter = commandPrompter;
+    }
 
     public List<Character> getGuessedLetters() {
         return guessedLetters;
@@ -42,26 +51,26 @@ public class Game {
         this.hiddenWordInPlay = hiddenWord;
     }
 
-    public void playGame(Display display, WordLibrary wordLibrary, CommandPrompter commandPrompter) {
+    public void play() {
         display.printWelcomeMessage();
-        randomWord = wordLibrary.getRandomWord().toUpperCase();
+        randomWord = wordLibrary.getRandomWord().trim().toUpperCase();
         hiddenWordInPlay = display.printHiddenWord(randomWord);
 
         while (livesRemaining > 0 && hiddenWordInPlay.contains("_")) {
-            handleGuessLogic(display, commandPrompter);
+            handleGuessLogic();
         }
         checkGameState(display);
         boolean playAgain = commandPrompter.askToPlayAgain();
 
         if (playAgain) {
             resetGame();
-            playGame(display, wordLibrary, commandPrompter);
+            play();
         } else {
             display.printEndGameMessage();
         }
     }
 
-    public void handleGuessLogic(Display display, CommandPrompter commandPrompter) {
+    public void handleGuessLogic() {
 
         char currentGuess = commandPrompter.getUsersGuess(this);
         boolean invalidGuess = checkIfLetterAlreadyGuessed(currentGuess);
@@ -92,7 +101,7 @@ public class Game {
 
         boolean isLetter = false;
 
-        for (char letter : alphabet) {
+        for (char letter : validGameLetters) {
 
             if (letter == guessedLetter) {
                 isLetter = true;
