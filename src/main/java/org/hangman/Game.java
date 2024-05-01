@@ -23,29 +23,8 @@ public class Game {
         return guessedLetters;
     }
 
-
     private int getLivesRemaining() {
         return this.livesRemaining;
-    }
-
-//    public void setLivesRemaining(int livesRemaining) {
-//        this.livesRemaining = livesRemaining;
-//    }
-
-    public String getRandomWord() {
-        return this.randomWord;
-    }
-
-    public void setRandomWord(String randomWord) {
-        this.randomWord = randomWord;
-    }
-
-    public String getHiddenWordInPlay() {
-        return hiddenWordInPlay;
-    }
-
-    public void setHiddenWordInPlay(String hiddenWord) {
-        this.hiddenWordInPlay = hiddenWord;
     }
 
     public void start() {

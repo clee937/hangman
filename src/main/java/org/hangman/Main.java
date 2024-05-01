@@ -9,13 +9,5 @@ public class Main {
 
         game.start();
 
-        //Structure
-        // constants
-        // variables
-        // constructors
-        // getters and setters
-        // methods
-        // toString
-
     }
 }
