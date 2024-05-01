@@ -5,40 +5,40 @@ import java.util.Scanner;
 public class CommandPrompter {
     final private Scanner scanner = new Scanner(System.in);
 
-    public char getUsersGuess(Game game) {
+    protected char getUsersGuess() {
 
         System.out.println("Please guess a letter: ");
 
         String guessedLetter = scanner.nextLine().trim().toUpperCase();
 
         while (guessedLetter.isEmpty()) {
-            guessedLetter = scanner.nextLine().toUpperCase();
+            guessedLetter = scanner.nextLine().trim().toUpperCase();
         }
 
-        boolean IsGuessALetter = game.checkIfGuessIsALetter(guessedLetter.charAt(0));
+        boolean IsGuessALetter = Character.isLetter(guessedLetter.charAt(0));
 
         if (!IsGuessALetter) {
             System.out.println("Not a valid guess.");
-            return this.getUsersGuess(game);
-        } else if (guessedLetter.length() > 1) {
+            return this.getUsersGuess();
+        } else if (guessedLetter.length() != 1) {
             System.out.println("Only one letter allowed. Please guess again: ");
-            return this.getUsersGuess(game);
+            return this.getUsersGuess();
         }
 
         System.out.println("You guessed: " + guessedLetter);
         return guessedLetter.charAt(0);
     }
 
-    public boolean askToPlayAgain() {
-        System.out.println("\n" + "Play again? Y/N");
+    protected boolean askToPlayAgain() {
+        System.out.println("\n\n" + "Play again? Y/N");
         String answer = scanner.nextLine().trim().toUpperCase();
 
         while (answer.isEmpty()) {
-            answer = scanner.nextLine().toUpperCase();
+            answer = scanner.nextLine().trim().toUpperCase();
         }
 
         while (!answer.equals("Y") && !answer.equals("N")) {
-            answer = scanner.nextLine().toUpperCase();
+            answer = scanner.nextLine().trim().toUpperCase();
         }
 
         return answer.equals("Y");

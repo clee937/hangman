@@ -1,19 +1,19 @@
 package org.hangman;
 
+import java.util.Random;
+
 public class WordLibrary {
 
-    private String[] words = {"elephant", "wizard", "super"};
+//    private final String[] words = {"elephant", "wizard", "super", "jazz", "nology", "polymorphism", "inheritance", "abstraction", "encapsulation", "react", "hangman", "array", "overload", "override", "object", "class", "method", "instance", "variable", "private", "protected", "parent", "child", "extends", "reusability", "interface"};
 
-    public String[] getWords() {
-        return words;
-    }
+    private final String[] words = {"object", "class", "variable", "interface"};
 
-    public void setWords(String[] words) {
-        this.words = words;
-    }
 
-    public String getRandomWord() {
-        return words[(int) Math.floor(Math.random() * words.length)];
+    protected String getRandomWord() {
+        if (words.length == 0) {
+            return null;
+        }
+        Random random = new Random();
+        return words[random.nextInt(words.length)];
     }
 }
-//private static final Random RANDOM = new Random();
