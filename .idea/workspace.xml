@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="054dbbc9-1ef0-4ec4-be0f-30ed139c7084" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Display.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hangman/WordLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hangman/WordLibrary.java" afterDir="false" />
@@ -63,6 +64,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />

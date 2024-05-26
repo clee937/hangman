@@ -1,10 +1,10 @@
 package org.hangman;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Game {
-    private final ArrayList<Character> guessedLetters = new ArrayList<>();
+    private final Set<Character> guessedLetters = new HashSet<>();
     private final Display display;
     private final CommandPrompter commandPrompter;
     private final WordLibrary wordLibrary;
@@ -19,7 +19,7 @@ public class Game {
         this.commandPrompter = commandPrompter;
     }
 
-    public List<Character> getGuessedLetters() {
+    public Set<Character> getGuessedLetters() {
         return guessedLetters;
     }
 

@@ -1,6 +1,6 @@
 package org.hangman;
 
-import java.util.List;
+import java.util.Set;
 
 public class Display {
 
@@ -27,39 +27,36 @@ public class Display {
             System.out.printf("You have %d lives remaining.%n%n", lives);
         }
     }
-    
+
     public String printHiddenWord(String word) {
 
-        String hiddenWord = "";
-
-        for (int i = 0; i < word.length(); i++) {
-            hiddenWord += "_ ";
-        }
+        String hiddenWord = "_ ".repeat(word.length());
 
         System.out.println(hiddenWord + "\n");
         return hiddenWord;
     }
 
     //overloading
-    public String printHiddenWord(String word, char letter, List<Character> correctLettersArray) {
+    public String printHiddenWord(String word, char letter, Set<Character> correctLettersArray) {
 
-        String hiddenWord = "";
+        StringBuilder hiddenWord = new StringBuilder();
 
         for (int i = 0; i < word.length(); i++) {
-
-            if (word.toCharArray()[i] == letter) {
-                hiddenWord += letter + " ";
-            } else if (correctLettersArray.contains(word.toCharArray()[i])) {
-                hiddenWord += word.toCharArray()[i] + " ";
+            char currentWord = word.charAt(i);
+            if (currentWord == letter) {
+                hiddenWord.append(letter).append(" ");
+            } else if (correctLettersArray.contains(currentWord)) {
+                hiddenWord.append(currentWord).append(" ");
             } else {
-                hiddenWord += "_ ";
+                hiddenWord.append("_ ");
             }
         }
+
         System.out.println(hiddenWord + "\n");
-        return hiddenWord;
+        return hiddenWord.toString();
     }
 
-    public void printGuessedLetters(List<Character> guessedLetters) {
+    public void printGuessedLetters(Set<Character> guessedLetters) {
         System.out.println("Guesses so far: " + guessedLetters + "\n");
     }
 
