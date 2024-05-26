@@ -21,7 +21,7 @@ The game has 4 classes, each with their own role:
 - Displays letters guessed so far after every turn.
 - Displays number of lives remaining after every turn.
 - Feedback messages and ascii art hangman displayed after each turn.
-- Win/lose feedback when the game ends, displaying the number of lives remaining.
+- Win/lose feedback when the game ends, showing the number of lives remaining.
 - Option to play again.
 
 ## Preview
